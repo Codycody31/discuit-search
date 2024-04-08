@@ -1,0 +1,20 @@
+{
+  "name": "discuit-search",
+  "type": "module",
+  "scripts": {
+    "start": "bun run main.tsx",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.12",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "@elysiajs/html": "^1.0.2",
+    "@elysiajs/static": "^1.0.2",
+    "@kitajs/ts-html-plugin": "^4.0.1",
+    "elysia": "^1.0.13",
+    "marked": "^12.0.1",
+    "meilisearch": "^0.38.0"
+  }
+}

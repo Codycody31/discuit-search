@@ -1,0 +1,69 @@
+:root {
+    color-scheme: dark light;
+    font-family: system-ui;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    height: 100dvh;
+    overflow: hidden;
+    margin: auto;
+    padding-bottom: 1rem;
+    width: 88%;
+    max-width: 64rem;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    overflow: auto;
+    width: 100%;
+}
+
+input {
+    background-color: canvastext;
+    color: canvas;
+    font-family: system-ui;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+/* Community */
+.community {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    border: 0.125rem solid canvastext;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+
+    &:hover {
+        background-color: #444;
+    }
+}
+
+p {
+    word-break: break-word;
+}
+
+.community-link {
+    text-decoration: none;
+    color: canvastext;
+}
