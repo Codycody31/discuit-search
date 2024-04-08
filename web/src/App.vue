@@ -33,7 +33,14 @@ export default {
         return
       }
 
-      fetch(`http://localhost:5000/api/search?query=${query}&index=communities`)
+      let baseURL
+      if (process.env.NODE_ENV === 'development') {
+        baseURL = 'http://localhost:5000/api'
+      } else {
+        baseURL = '/api'
+      }
+
+      fetch(`${baseURL}/search?query=${query}&index=communities`)
         .then((response) => response.json())
         .then((data) => {
           this.results = data.data.hits
