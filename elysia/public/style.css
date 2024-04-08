@@ -7,7 +7,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr;
     justify-items: center;
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     margin: auto;
     padding-bottom: 1rem;
@@ -43,7 +43,27 @@ ul {
     overflow: auto;
 }
 
-#results {
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
+/* Community */
+.community {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    border: 0.125rem solid canvastext;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+
+    &:hover {
+        background-color: #444;
+    }
+}
+
+p {
+    word-break: break-word;
+}
+
+.community-link {
+    text-decoration: none;
+    color: canvastext;
 }
