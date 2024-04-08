@@ -155,7 +155,12 @@ async function populateMeiliSearch() {
 
 	const communitiesIndex = client.index("communities");
 
-	await communitiesIndex.deleteAllDocuments();
+	// Check if the index exists
+	if (!(await communitiesIndex.exists())) {
+		await client.createIndex("communities");
+	} else {
+		await communitiesIndex.deleteAllDocuments();
+	}
 
 	await communitiesIndex.addDocuments(communities);
 
