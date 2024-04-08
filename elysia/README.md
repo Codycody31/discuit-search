@@ -1,4 +1,4 @@
-# elysia
+# Discuit search
 
 # Setup
 
@@ -10,6 +10,5 @@ Follow these steps to run [Elysia.js](https://elysiajs.com) under [Bun](https://
    ```
 2. You're ready to go!
    ```bash
-   bun run main.ts
+   bun start
    ```
-
