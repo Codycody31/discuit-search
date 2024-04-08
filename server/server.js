@@ -148,6 +148,7 @@ async function populateMeiliSearch() {
 		return comArr;
 	});
 
+	log.debug("server", "Communities fetched. Connecting to MeiliSearch");
 	const client = new MeiliSearch({
 		host: config.meiliSearch.host,
 		apiKey: config.meiliSearch.apiKey,
@@ -157,11 +158,14 @@ async function populateMeiliSearch() {
 
 	// Check if the index exists
 	if (!(await communitiesIndex.exists())) {
+		log.debug("server", "Creating MeiliSearch index");
 		await client.createIndex("communities");
 	} else {
+		log.debug("server", "MeiliSearch index already exists. Deleting all documents");
 		await communitiesIndex.deleteAllDocuments();
 	}
 
+	log.debug("server", "Adding documents to MeiliSearch index");
 	await communitiesIndex.addDocuments(communities);
 
 	log.debug("server", "MeiliSearch index populated");
@@ -201,18 +205,10 @@ gracefulShutdown(app, {
 
 // Catch unhandled rejections
 process.on("unhandledRejection", async (err) => {
-	if (config.exceptionless.backendApiKey && config.exceptionless.serverUrl) {
-		await Exceptionless.submitException(err);
-	}
-
 	log.error("server", "Unhandled rejection: " + err);
 	console.error(err);
 });
 process.on("uncaughtException", async (err) => {
-	if (config.exceptionless.backendApiKey && config.exceptionless.serverUrl) {
-		await Exceptionless.submitException(err);
-	}
-
 	log.error("server", "Uncaught exception: " + err);
 	console.error(err);
 });
