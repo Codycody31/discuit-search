@@ -1,0 +1,11 @@
+*node_modules*
+*compose.yml*
+*Dockerfile*
+*/node_modules
+
+# Ignore .env file containing credentials, API keys, tokens, passwords, etc.
+*.env
+.env
+
+# Ignore build output for vue
+frontend/dist

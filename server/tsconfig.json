@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "module": "commonjs",
+        "strict": true,
+        "baseUrl": "./",
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "rootDir": "./",
+        "module": "commonjs",
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
