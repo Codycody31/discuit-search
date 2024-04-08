@@ -1,17 +1,18 @@
-<script setup lang="ts">
-interface Community {
-  id: number
-  name: string
-  about: string | null
-}
-const community: Community = defineProps<{ community: Community }>().community
+<script setup>
+import { defineProps } from 'vue'
+import MarkdownIt from 'markdown-it'
+const markdown = new MarkdownIt()
+
+const props = defineProps(['community'])
+const community = props.community
 </script>
 
 <template>
-  <a :href="`https://discuit.net/${community.name}`">
+  <a :href="`https://discuit.net/${community.name}`" target="_blank" rel="noopener noreferrer">
     <li>
       <h3>{{ community.name }}</h3>
-      <p :inner-h-t-m-l="community.about"></p>
+      <p v-if="community.about" v-html="markdown.render(community.about)"></p>
+      <p>{{ community.noMembers }} members</p>
     </li>
   </a>
 </template>

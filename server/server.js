@@ -25,10 +25,11 @@ require = function (module) {
 // Packages
 const http = require("http");
 const express = require("express");
-
 const helmet = require("helmet");
 const gracefulShutdown = require("http-graceful-shutdown");
 const responseTime = require("response-time");
+const fetch = require("node-fetch");
+const { MeiliSearch } = require("meilisearch");
 
 log.info("server", "Discuit Search backend service starting");
 
@@ -114,20 +115,52 @@ const server = http.createServer(app);
 		});
 	});
 
+	// Populate MeiliSearch index
+	await populateMeiliSearch();
+
+	// Setup cron jobs to periodically update the MeiliSearch index
+	const cron = require("node-cron");
+	cron.schedule("0 * * * *", async () => {
+		await populateMeiliSearch();
+	});
+
 	// Start listening for requests
 	server.listen(port, async () => {
 		// Show the version number and the port that the app is running on
-		log.info(
-			"server",
-			`Discuit Search is serving at ${url}`
-		);
+		log.info("server", `Discuit Search is serving at ${url}`);
 
-		log.info(
-			"server",
-			"Discuit Search backend service started at " + new Date()
-		);
+		log.info("server", "Discuit Search backend service started at " + new Date());
 	});
 })();
+
+async function populateMeiliSearch() {
+	log.debug("server", "Populating MeiliSearch index");
+	const communities = await fetch(
+		"https://discuit.net/api/communities?set=all"
+	).then(async (r) => {
+		const res = await r.json();
+		const comArr = res.map((c) => ({
+			id: c.id,
+			name: c.name,
+			about: c.about,
+			noMembers: c.noMembers,
+		}));
+		return comArr;
+	});
+
+	const client = new MeiliSearch({
+		host: config.meiliSearch.host,
+		apiKey: config.meiliSearch.apiKey,
+	});
+
+	const communitiesIndex = client.index("communities");
+
+	await communitiesIndex.deleteAllDocuments();
+
+	await communitiesIndex.addDocuments(communities);
+
+	log.debug("server", "MeiliSearch index populated");
+}
 
 /**
  * Shutdown the application

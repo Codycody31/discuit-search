@@ -30,6 +30,10 @@ interface AppConfig {
 	 * Log level for the application
 	 */
 	logLevel: string;
+	/**
+	 * Admin token for the application
+	 */
+	appAdminToken: string;
 }
 
 interface MeiliSearchConfig {
@@ -64,8 +68,9 @@ class Config {
 			env: process.env.APP_ENV || "development",
 			url:
 				process.env.APP_URL || `http://localhost:${process.env.APP_PORT || "5000"}`,
-			frontendUrl: process.env.FRONTEND_URL || "http://localhost:3000",
+			frontendUrl: process.env.FRONTEND_URL || "http://localhost:5173",
 			logLevel: process.env.APP_LOG_LEVEL || "info",
+			appAdminToken: process.env.APP_ADMIN_TOKEN || "",
 		};
 
 		this.meiliSearch = {
