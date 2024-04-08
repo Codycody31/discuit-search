@@ -156,14 +156,8 @@ async function populateMeiliSearch() {
 
 	const communitiesIndex = client.index("communities");
 
-	// Check if the index exists
-	if (!(await communitiesIndex.exists())) {
-		log.debug("server", "Creating MeiliSearch index");
-		await client.createIndex("communities");
-	} else {
-		log.debug("server", "MeiliSearch index already exists. Deleting all documents");
-		await communitiesIndex.deleteAllDocuments();
-	}
+	// TODO: Clear/remove all documents from the index before adding new ones
+	// Or find a way to update the documents in the index and remove the ones that are no longer in the list
 
 	log.debug("server", "Adding documents to MeiliSearch index");
 	await communitiesIndex.addDocuments(communities);
