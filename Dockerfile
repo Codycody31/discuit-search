@@ -11,7 +11,7 @@ WORKDIR /app/web
 COPY web/package*.json ./
 RUN npm install
 COPY web/ ./
-RUN npm run build
+RUN npm run build-only
 
 # Build the server
 WORKDIR /app/server
