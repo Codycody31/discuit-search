@@ -1,3 +1,6 @@
+import Community from "../components/Community";
+import { communities } from "../controllers/search";
+
 export default function () {
   return (
     <html lang="en">
@@ -10,24 +13,18 @@ export default function () {
         />
         <title>Discuit Search</title>
         <link rel="stylesheet" href="/public/style.css" />
-        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-        <script src="/public/script.js"></script>
       </head>
       <body>
         <header>
           <h1>Discuit Search</h1>
         </header>
         <main>
-          <input
-            hx-get="/search?"
-            hx-target="#results"
-            hx-include="this"
-            hx-trigger="keyup changed"
-            name="q"
-            type="text"
-            placeholder="Search..."
-          />
-          <ul id="results"></ul>
+          <input name="q" type="text" placeholder="Search..." />
+          <ul id="results">
+            {communities.map(({ name, about, noMembers }) => (
+              <Community name={name} about={about} noMembers={noMembers} />
+            ))}
+          </ul>
         </main>
       </body>
     </html>
