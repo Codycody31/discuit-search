@@ -11,21 +11,33 @@ const app = new Elysia()
   .get("/", () => <Index />)
   .get("/search", async ({ query }) => {
     if (query["q"] === "" || !query["q"]) {
-      return communities.map(({ name, about, noMembers }) => (
-        <Community name={name} about={about} noMembers={noMembers} />
-      ));
+      return (
+        <>
+          {communities.map(({ name, about, noMembers }) => (
+            <Community name={name} about={about} noMembers={noMembers} />
+          ))}
+        </>
+      );
     }
 
     const searchResults = await search(query["q"]);
     if (!searchResults) {
-      return communities.map(({ name, about, noMembers }) => (
-        <Community name={name} about={about} noMembers={noMembers} />
-      ));
+      return (
+        <>
+          {communities.map(({ name, about, noMembers }) => (
+            <Community name={name} about={about} noMembers={noMembers} />
+          ))}
+        </>
+      );
     }
 
-    return searchResults.map(({ name, about, noMembers }) => (
-      <Community name={name} about={about} noMembers={noMembers} />
-    ));
+    return (
+      <>
+        {searchResults.map(({ name, about, noMembers }) => (
+          <Community name={name} about={about} noMembers={noMembers} />
+        ))}
+      </>
+    );
   })
   .listen(8080);
 
