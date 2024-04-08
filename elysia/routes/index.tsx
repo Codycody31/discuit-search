@@ -13,13 +13,22 @@ export default function () {
         />
         <title>Discuit Search</title>
         <link rel="stylesheet" href="/public/style.css" />
+        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
       </head>
       <body>
         <header>
           <h1>Discuit Search</h1>
         </header>
         <main>
-          <input name="q" type="text" placeholder="Search..." />
+          <input
+            name="q"
+            type="text"
+            hx-get="/search"
+            hx-target="#results"
+            hx-trigger="keyup changed"
+            hx-include="this"
+            placeholder="Search..."
+          />
           <ul id="results">
             {communities.map(({ name, about, noMembers }) => (
               <Community name={name} about={about} noMembers={noMembers} />
