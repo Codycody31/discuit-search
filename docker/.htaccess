@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# If the request begins with /api, proxy it to http://localhost:5000/
+RewriteRule ^api/ http://localhost:5000%{REQUEST_URI} [P,L]
+
+# If the request is not for a real file or directory, serve index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]

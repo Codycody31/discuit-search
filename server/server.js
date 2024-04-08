@@ -89,7 +89,7 @@ const server = http.createServer(app);
 	log.debug("server", "Loading routes");
 	const Routes = require("./routes");
 	Object.keys(Routes).forEach((route) => {
-		app.use("/", Routes[route]);
+		app.use("/api/", Routes[route]);
 	});
 
 	// 404 middleware
