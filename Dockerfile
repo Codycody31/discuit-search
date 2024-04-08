@@ -11,4 +11,4 @@ COPY elysia .
 ENV NODE_ENV production
 CMD [ "bun", "main.tsx" ]
 
-EXPOSE 3000
+EXPOSE 8080
