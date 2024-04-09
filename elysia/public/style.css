@@ -50,7 +50,6 @@ ul {
     height: fit-content;
     border: 0.125rem solid canvastext;
     margin: 0.5rem 0;
-    padding: 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.25s;
 
@@ -61,9 +60,14 @@ ul {
 
 p {
     word-break: break-word;
+    line-height: 1.5;
 }
 
 .community-link {
+    all: unset;
     text-decoration: none;
     color: canvastext;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.5rem;
 }

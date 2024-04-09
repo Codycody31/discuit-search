@@ -11,18 +11,17 @@ function Community({
   noMembers: number;
 }>) {
   return (
-    <a
-      class={"community-link"}
-      href={`https://discuit.net/${name}`}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <li class={"community"}>
+    <li class={"community"}>
+      <button
+        class={"community-link"}
+        onclick={`open("https://discuit.net/${name}", "_blank", "noopener,noreferrer")`}
+        target="_blank"
+      >
         <h3>{name}</h3>
         {about && marked.parse(about)}
         <p>{noMembers} members</p>
-      </li>
-    </a>
+      </button>
+    </li>
   );
 }
 
