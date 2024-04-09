@@ -67,7 +67,15 @@ p {
     all: unset;
     text-decoration: none;
     color: canvastext;
-    width: 100%;
     cursor: pointer;
     padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    img {
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
 }

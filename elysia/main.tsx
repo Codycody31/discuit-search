@@ -13,8 +13,13 @@ const app = new Elysia()
     if (query["q"] === "" || !query["q"]) {
       return (
         <>
-          {communities.map(({ name, about, noMembers }) => (
-            <Community name={name} about={about} noMembers={noMembers} />
+          {communities.map(({ name, about, noMembers, proPic }) => (
+            <Community
+              name={name}
+              about={about}
+              noMembers={noMembers}
+              proPic={proPic}
+            />
           ))}
         </>
       );
@@ -24,8 +29,13 @@ const app = new Elysia()
     if (!searchResults) {
       return (
         <>
-          {communities.map(({ name, about, noMembers }) => (
-            <Community name={name} about={about} noMembers={noMembers} />
+          {communities.map(({ name, about, noMembers, proPic }) => (
+            <Community
+              name={name}
+              about={about}
+              noMembers={noMembers}
+              proPic={proPic}
+            />
           ))}
         </>
       );
@@ -33,8 +43,13 @@ const app = new Elysia()
 
     return (
       <>
-        {searchResults.map(({ name, about, noMembers }) => (
-          <Community name={name} about={about} noMembers={noMembers} />
+        {searchResults.map(({ name, about, noMembers, proPic }) => (
+          <Community
+            name={name}
+            about={about}
+            noMembers={noMembers}
+            proPic={proPic}
+          />
         ))}
       </>
     );

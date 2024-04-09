@@ -30,8 +30,13 @@ export default function () {
             placeholder="Search..."
           />
           <ul id="results">
-            {communities.map(({ name, about, noMembers }) => (
-              <Community name={name} about={about} noMembers={noMembers} />
+            {communities.map(({ name, about, noMembers, proPic }) => (
+              <Community
+                name={name}
+                about={about}
+                noMembers={noMembers}
+                proPic={proPic}
+              />
             ))}
           </ul>
         </main>

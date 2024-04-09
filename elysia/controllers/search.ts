@@ -5,6 +5,9 @@ type Community = {
   name: string;
   about: string | null;
   noMembers: number;
+  proPic: {
+    url: string;
+  } | null;
 };
 
 const communities = (await fetch("https://discuit.net/api/communities").then(
@@ -18,7 +21,7 @@ const meilisearch = new MeiliSearch({
 
 meilisearch.index("communities").addDocuments(communities);
 
-function search(query: string) {
+async function search(query: string) {
   return meilisearch
     .index("communities")
     .search(query)
