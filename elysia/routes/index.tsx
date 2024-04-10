@@ -62,10 +62,10 @@ export default new Elysia().get("/", () => {
           <div id="results">
             {communities.map((c) => (
               <Community
+                id={c.id}
                 name={c.name}
                 about={c.about}
                 noMembers={c.noMembers}
-                image={c.image}
               />
             ))}
           </div>

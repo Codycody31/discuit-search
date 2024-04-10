@@ -11,10 +11,10 @@ export default new Elysia().get("/search", async ({ query }) => {
       <>
         {communities.map((c) => (
           <Community
+            id={c.id}
             name={c.name}
             about={c.about}
             noMembers={c.noMembers}
-            image={c.image}
           />
         ))}
       </>
@@ -27,10 +27,10 @@ export default new Elysia().get("/search", async ({ query }) => {
       <>
         {communities.map((c) => (
           <Community
+            id={c.id}
             name={c.name}
             about={c.about}
             noMembers={c.noMembers}
-            image={c.image}
           />
         ))}
       </>
@@ -41,10 +41,10 @@ export default new Elysia().get("/search", async ({ query }) => {
     <>
       {searchResults.map((c) => (
         <Community
+          id={c.id}
           name={c.name}
           about={c.about}
           noMembers={c.noMembers}
-          image={c.image}
         />
       ))}
     </>

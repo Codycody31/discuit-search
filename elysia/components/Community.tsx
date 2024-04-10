@@ -2,15 +2,15 @@ import { PropsWithChildren } from "@kitajs/html";
 import { marked } from "marked";
 
 function Community({
+  id,
   name,
   about,
   noMembers,
-  image,
 }: PropsWithChildren<{
+  id: string;
   name: string;
   about: string | null;
   noMembers: number;
-  image: string;
 }>) {
   return (
     <button
@@ -21,7 +21,13 @@ function Community({
     >
       <h3>
         <img
-          src={`data:image/jpeg;base64,${image}`}
+          _={`
+          on intersection(intersecting)
+            if intersecting
+              fetch /image?id=${id}
+              put the result into my [@src]
+            end
+          `}
           decoding="async"
           loading="lazy"
           width={48}
