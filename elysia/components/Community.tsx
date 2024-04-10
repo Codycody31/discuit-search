@@ -6,39 +6,31 @@ function Community({
   about,
   noMembers,
   proPic,
-}: PropsWithChildren<{
-  name: string;
-  about: string | null;
-  noMembers: number;
-  proPic: {
-    url: string;
-  } | null;
-}>) {
+}: PropsWithChildren<Community>) {
   return (
-    <li class={"community"}>
-      <button
-        class={"community-link"}
-        onclick={`open("https://discuit.net/${name}", "_blank", "noopener,noreferrer")`}
-        target="_blank"
-      >
+    <button
+      class={"community-link"}
+      onclick={`open("https://discuit.net/${name}", "_blank", "noopener,noreferrer")`}
+      target="_blank"
+      title={`Open https://discuit.net/${name}`}
+    >
+      <h3>
         <img
           src={
             proPic
-              ? `https://discuit.net${proPic.url}`
+              ? `https://discuit.net${proPic.copies[0].url}`
               : `https://discuit.net/favicon.png`
           }
           decoding="async"
           loading="lazy"
-          width={120}
-          height={120}
+          width={48}
+          height={48}
         />
-        <div>
-          <h3>{name}</h3>
-          {about && marked.parse(about)}
-          <p>{noMembers} members</p>
-        </div>
-      </button>
-    </li>
+        {name}
+      </h3>
+      {about && marked.parse(about)}
+      <p>{noMembers} members</p>
+    </button>
   );
 }
 
