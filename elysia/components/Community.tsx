@@ -6,7 +6,12 @@ function Community({
   about,
   noMembers,
   image,
-}: PropsWithChildren<Community>) {
+}: PropsWithChildren<{
+  name: string;
+  about: string | null;
+  noMembers: number;
+  image: string;
+}>) {
   return (
     <button
       class={"community-link"}

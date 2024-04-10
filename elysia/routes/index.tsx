@@ -1,7 +1,9 @@
 import { Elysia } from "elysia";
 import Community from "../components/Community";
-import communities from "../communities.json";
+import coms from "../communities.json";
 import { Sun, Moon, Github } from "lucide-static";
+
+const communities = coms as Community[];
 
 export default new Elysia().get("/", () => {
   return (
@@ -60,7 +62,6 @@ export default new Elysia().get("/", () => {
           <div id="results">
             {communities.map((c) => (
               <Community
-                id={c.id}
                 name={c.name}
                 about={c.about}
                 noMembers={c.noMembers}

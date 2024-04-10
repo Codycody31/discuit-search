@@ -1,19 +1,20 @@
 import { Elysia } from "elysia";
 import { search } from "../controllers/search";
-import { communities } from "../controllers/communities";
+import coms from "../communities.json";
 import Community from "../components/Community";
+
+const communities = coms as Community[];
 
 export default new Elysia().get("/search", async ({ query }) => {
   if (query["q"] === "" || !query["q"]) {
     return (
       <>
-        {communities.map(({ id, name, about, noMembers, proPic }) => (
+        {communities.map((c) => (
           <Community
-            id={id}
-            name={name}
-            about={about}
-            noMembers={noMembers}
-            proPic={proPic}
+            name={c.name}
+            about={c.about}
+            noMembers={c.noMembers}
+            image={c.image}
           />
         ))}
       </>
@@ -24,13 +25,12 @@ export default new Elysia().get("/search", async ({ query }) => {
   if (!searchResults) {
     return (
       <>
-        {communities.map(({ id, name, about, noMembers, proPic }) => (
+        {communities.map((c) => (
           <Community
-            id={id}
-            name={name}
-            about={about}
-            noMembers={noMembers}
-            proPic={proPic}
+            name={c.name}
+            about={c.about}
+            noMembers={c.noMembers}
+            image={c.image}
           />
         ))}
       </>
@@ -39,13 +39,12 @@ export default new Elysia().get("/search", async ({ query }) => {
 
   return (
     <>
-      {searchResults.map(({ id, name, about, noMembers, proPic }) => (
+      {searchResults.map((c) => (
         <Community
-          id={id}
-          name={name}
-          about={about}
-          noMembers={noMembers}
-          proPic={proPic}
+          name={c.name}
+          about={c.about}
+          noMembers={c.noMembers}
+          image={c.image}
         />
       ))}
     </>
