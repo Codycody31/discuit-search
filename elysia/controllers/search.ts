@@ -4,7 +4,7 @@ import coms from "../communities.json";
 const communities = coms as Community[];
 
 const meilisearch = new MeiliSearch({
-  host: Bun.env.MEILI_SEARCH_HOST || "http://localhost:3000",
+  host: Bun.env.MEILI_SEARCH_HOST || "http://localhost:7700",
   apiKey: Bun.env.MEILI_SEARCH_API_KEY || "",
 });
 

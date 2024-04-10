@@ -12,6 +12,7 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "@elysiajs/cron": "^1.0.3",
     "@elysiajs/html": "^1.0.2",
     "@elysiajs/static": "^1.0.2",
     "@kitajs/ts-html-plugin": "^4.0.1",
