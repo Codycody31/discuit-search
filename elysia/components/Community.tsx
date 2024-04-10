@@ -5,7 +5,7 @@ function Community({
   name,
   about,
   noMembers,
-  proPic,
+  image,
 }: PropsWithChildren<Community>) {
   return (
     <button
@@ -16,11 +16,7 @@ function Community({
     >
       <h3>
         <img
-          src={
-            proPic
-              ? `https://discuit.net${proPic.copies[0].url}`
-              : `https://discuit.net/favicon.png`
-          }
+          src={`data:image/jpeg;base64,${image}`}
           decoding="async"
           loading="lazy"
           width={48}
