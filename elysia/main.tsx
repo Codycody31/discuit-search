@@ -6,16 +6,20 @@ import { staticPlugin } from "@elysiajs/static";
 import index from "./routes/index";
 import searchRoute from "./routes/search";
 
+if (!(await Bun.file(`${import.meta.dir}/communities.json`).exists())) {
+  await $`bun build-index`;
+}
+
 const app = new Elysia()
   .use(
     cron({
       name: "build-index",
       pattern: "0 * * * *",
-      run() {
+      async run() {
         console.log("Building index...");
-        $`bun run build-index`;
+        await $`bun build-index`;
       },
-    })
+    }),
   )
   .use(html())
   .use(staticPlugin())
