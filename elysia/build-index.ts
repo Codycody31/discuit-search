@@ -1,3 +1,5 @@
+const t0 = performance.now();
+
 async function fetchBase64(url: string = "") {
   return await fetch(url)
     .then((res) => res.arrayBuffer())
@@ -56,3 +58,7 @@ const communities = await fetch("https://discuit.net/api/communities")
   );
 
 Bun.write("communities.json", JSON.stringify(communities));
+
+const t1 = performance.now();
+
+console.log(`Built index in ${(t1 - t0) / 1000}s`);
