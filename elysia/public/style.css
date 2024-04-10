@@ -107,6 +107,7 @@ input {
     flex-direction: column;
     gap: 0.5rem;
     overflow: auto;
+    scroll-behavior: smooth;
 }
 
 /* Community */

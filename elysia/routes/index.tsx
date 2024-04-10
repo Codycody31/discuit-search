@@ -57,6 +57,7 @@ export default new Elysia().get("/", () => {
             hx-trigger="keyup changed"
             hx-include="this"
             placeholder="Search..."
+            _="on keyup set #results.scrollTop to 0"
             title="Search for a community"
           />
           <div id="results">
