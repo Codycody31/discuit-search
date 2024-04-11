@@ -2,11 +2,16 @@ import { PropsWithChildren } from "@kitajs/html";
 import { marked } from "marked";
 
 function Community({
+  id,
   name,
   about,
   noMembers,
-  proPic,
-}: PropsWithChildren<Community>) {
+}: PropsWithChildren<{
+  id: string;
+  name: string;
+  about: string | null;
+  noMembers: number;
+}>) {
   return (
     <button
       class={"community-link"}
@@ -16,11 +21,13 @@ function Community({
     >
       <h3>
         <img
-          src={
-            proPic
-              ? `https://discuit.net${proPic.copies[0].url}`
-              : `https://discuit.net/favicon.png`
-          }
+          _={`
+          on intersection(intersecting)
+            if intersecting
+              fetch /image?id=${id}
+              put the result into my [@src]
+            end
+          `}
           decoding="async"
           loading="lazy"
           width={48}

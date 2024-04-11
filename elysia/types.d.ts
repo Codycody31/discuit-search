@@ -3,7 +3,14 @@ type Community = {
   name: string;
   about: string | null;
   noMembers: number;
+  image: string;
+  lastActivityAt: string; // time
+  createdAt: string; // time
   proPic: {
-    copies: [{ name: "medium"; url: string }];
+    url: string;
   } | null;
+};
+
+type Post = {
+  lastActivityAt: string;
 };

@@ -2,7 +2,9 @@
   "name": "discuit-search",
   "type": "module",
   "scripts": {
-    "start": "bun run main.tsx",
+    "build-index": "bun build-index.ts",
+    "dev": "bun build-index && bun start",
+    "start": "bun main.tsx",
     "typecheck": "tsc"
   },
   "devDependencies": {
@@ -10,6 +12,7 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "@elysiajs/cron": "^1.0.3",
     "@elysiajs/html": "^1.0.2",
     "@elysiajs/static": "^1.0.2",
     "@kitajs/ts-html-plugin": "^4.0.1",
