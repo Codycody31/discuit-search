@@ -76,6 +76,12 @@ export default new Elysia().get("/", () => {
                 <option value="activity-ascending">
                   Last activity (oldest-newest)
                 </option>
+                <option value="created-descending">
+                  Created (newest-oldest)
+                </option>
+                <option value="created-ascending">
+                  Created (oldest-newest)
+                </option>
               </select>
               {ChevronDown}
             </label>

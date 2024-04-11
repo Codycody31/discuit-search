@@ -53,6 +53,7 @@ const communities = await fetch("https://discuit.net/api/communities")
       about: c.about,
       noMembers: c.noMembers,
       image: c.image,
+      createdAt: c.createdAt,
       lastActivityAt: c.lastActivityAt,
     })),
   );
