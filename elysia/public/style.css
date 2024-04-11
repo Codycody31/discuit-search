@@ -88,16 +88,46 @@ main {
     width: 100%;
 }
 
-input {
-    background-color: var(--primary);
-    color: var(--on-primary);
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    border: none;
+form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
 
-    &::placeholder {
+    input,
+    select {
+        background-color: var(--primary);
+        color: var(--on-primary);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+    }
+
+    input {
+        font-family: inherit;
+
+        border: none;
+
+        &::placeholder {
+            color: var(--on-primary);
+        }
+    }
+
+    select {
+        appearance: none;
+    }
+
+    label {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        right: 0.25rem;
         color: var(--on-primary);
     }
 }

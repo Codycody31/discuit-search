@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import Community from "../components/Community";
 import coms from "../communities.json";
-import { Sun, Moon, Github } from "lucide-static";
+import { Sun, Moon, Github, ChevronDown } from "lucide-static";
 
 const communities = coms as Community[];
 
@@ -49,27 +49,38 @@ export default new Elysia().get("/", () => {
           </div>
         </header>
         <main>
-          <input
-            name="q"
-            type="text"
+          <form
             hx-get="/search"
             hx-target="#results"
-            hx-trigger="keyup changed"
+            hx-trigger="keyup changes from:find input, change from:find select"
             hx-include="this"
-            placeholder="Search..."
-            _="on keyup set #results.scrollTop to 0"
-            title="Search for a community"
-          />
-          <div id="results">
-            {communities.map((c) => (
-              <Community
-                id={c.id}
-                name={c.name}
-                about={c.about}
-                noMembers={c.noMembers}
-              />
-            ))}
-          </div>
+          >
+            <input
+              name="q"
+              type="text"
+              placeholder="Search..."
+              _="on keyup set #results.scrollTop to 0"
+              title="Search for a community"
+            />
+            <label>
+              Sort by:
+              <select name="sort">
+                <option value="relevance" selected>
+                  Relevance
+                </option>
+                <option value="name-ascending">Name (A-Z)</option>
+                <option value="name-descending">Name (Z-A)</option>
+                <option value="activity-descending">
+                  Last activity (newest-oldest)
+                </option>
+                <option value="activity-ascending">
+                  Last activity (oldest-newest)
+                </option>
+              </select>
+              {ChevronDown}
+            </label>
+          </form>
+          <div id="results" hx-get="/search" hx-trigger="load"></div>
         </main>
       </body>
     </html>
