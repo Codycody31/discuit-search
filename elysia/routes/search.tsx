@@ -6,7 +6,11 @@ import Community from "../components/Community";
 const communities = coms as Community[];
 
 function sort(communities: Community[], sort: string) {
-  const nameSorted = communities.toSorted();
+  const nameSorted = communities.toSorted((a, b) => {
+    if (a.name > b.name) return 1;
+    if (a.name < b.name) return -1;
+    return 0;
+  });
   const activitySorted = communities.toSorted((a, b) => {
     if (new Date(a.lastActivityAt) > new Date(b.lastActivityAt)) return 1;
     if (new Date(a.lastActivityAt) < new Date(b.lastActivityAt)) return -1;
