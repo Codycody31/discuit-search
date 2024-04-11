@@ -15,7 +15,7 @@ const app = new Elysia()
   .use(
     cron({
       name: "build-index",
-      pattern: "0 * * * *",
+      pattern: "*/30 * * * *",
       async run() {
         console.log("Building index...");
         await $`bun build-index`;
