@@ -95,6 +95,19 @@ form {
     align-items: center;
     gap: 1rem;
 
+    @media (max-width: 768px) {
+        grid-template-columns: unset;
+        grid-template-rows: auto auto;
+
+        label {
+            display: flex;
+        }
+
+        select {
+            flex-grow: 1;
+        }
+    }
+
     input,
     select {
         background-color: var(--primary);
