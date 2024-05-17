@@ -51,7 +51,7 @@ export default new Elysia().get("/search", async ({ query }) => {
   if (!searchResults) {
     return (
       <>
-        {sort(communities, query.q || "relevance").map((c) => (
+        {sort(communities, query.sort || "relevance").map((c) => (
           <Community
             id={c.id}
             name={c.name}
