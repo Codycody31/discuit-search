@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "@kitajs/html";
+import type { PropsWithChildren } from "@kitajs/html";
 import { marked } from "marked";
 
 function Community({

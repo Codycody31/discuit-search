@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
-import { search } from "../controllers/search";
 import coms from "../communities.json";
 import Community from "../components/Community";
+import { search } from "../controllers/search";
 
 const communities = coms as Community[];
 
@@ -32,10 +32,10 @@ function sort(communities: Community[], sort: string) {
 }
 
 export default new Elysia().get("/search", async ({ query }) => {
-  if (!query["q"]) {
+  if (!query.q) {
     return (
       <>
-        {sort(communities, query["sort"] || "relevance").map((c) => (
+        {sort(communities, query.sort || "relevance").map((c) => (
           <Community
             id={c.id}
             name={c.name}
@@ -47,11 +47,11 @@ export default new Elysia().get("/search", async ({ query }) => {
     );
   }
 
-  const searchResults = await search(query["q"]);
+  const searchResults = await search(query.q);
   if (!searchResults) {
     return (
       <>
-        {sort(communities, query["q"] || "relevance").map((c) => (
+        {sort(communities, query.q || "relevance").map((c) => (
           <Community
             id={c.id}
             name={c.name}
@@ -65,7 +65,7 @@ export default new Elysia().get("/search", async ({ query }) => {
 
   return (
     <>
-      {sort(searchResults, query["sort"] || "relevance").map((c) => (
+      {sort(searchResults, query.sort || "relevance").map((c) => (
         <Community
           id={c.id}
           name={c.name}

@@ -29,4 +29,4 @@ const app = new Elysia()
   .use(image)
   .listen(8080);
 
-console.log(`Listening on ${app.server!.url}`);
+console.log(`Listening on ${app.server?.url}`);

@@ -8,17 +8,17 @@
     "typecheck": "tsc"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.0",
+    "@types/bun": "^1.1.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@elysiajs/cron": "^1.0.3",
     "@elysiajs/html": "^1.0.2",
-    "@elysiajs/static": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
     "@kitajs/ts-html-plugin": "^4.0.1",
-    "elysia": "^1.0.13",
-    "lucide-static": "^0.366.0",
-    "marked": "^12.0.1",
-    "meilisearch": "^0.38.0"
+    "elysia": "^1.0.20",
+    "lucide-static": "^0.378.0",
+    "marked": "^12.0.2",
+    "meilisearch": "^0.40.0"
   }
 }
