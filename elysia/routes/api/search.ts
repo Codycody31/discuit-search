@@ -1,8 +1,5 @@
 import Elysia from "elysia";
-import communities from "../../communities.json";
 import { search } from "../../controllers/search";
-
-const coms = communities as Community[];
 
 function sort(communities: Community[], sort: string) {
   const nameSorted = communities.toSorted((a, b) => {
