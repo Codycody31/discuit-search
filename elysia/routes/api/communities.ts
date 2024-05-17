@@ -1,7 +1,7 @@
 import Elysia from "elysia";
-import communities from "../communities.json";
+import communities from "../../communities.json";
 
-export default new Elysia().get("/api", () => {
+export default new Elysia().get("/api/communities", () => {
   const coms = communities as Community[];
   return {
     communities: coms.map((c) => ({
