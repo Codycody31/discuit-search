@@ -1,6 +1,6 @@
 const t0 = performance.now();
 
-async function fetchBase64(url: string = "") {
+async function fetchBase64(url = "") {
   return await fetch(url)
     .then((res) => res.arrayBuffer())
     .then((buf) => Buffer.from(buf).toString("base64"));
@@ -25,7 +25,7 @@ async function getLastActivity(c: Community) {
   ).then((r) => r.json())) as Response;
 
   if (posts.posts) {
-    c.lastActivityAt = posts.posts[0]!.lastActivityAt;
+    c.lastActivityAt = posts.posts[0]?.lastActivityAt || "";
   } else {
     c.lastActivityAt = c.createdAt;
   }

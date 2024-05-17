@@ -6,6 +6,8 @@ import { staticPlugin } from "@elysiajs/static";
 import index from "./routes/index";
 import searchRoute from "./routes/search";
 import image from "./routes/image";
+import apiCommunities from "./routes/api/communities";
+import apiSearch from "./routes/api/search";
 
 if (!(await Bun.file(`${import.meta.dir}/communities.json`).exists())) {
   await $`bun build-index`;
@@ -27,6 +29,8 @@ const app = new Elysia()
   .use(index)
   .use(searchRoute)
   .use(image)
+  .use(apiCommunities)
+  .use(apiSearch)
   .listen(8080);
 
-console.log(`Listening on ${app.server!.url}`);
+console.log(`Listening on ${app.server?.url}`);

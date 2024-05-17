@@ -1,13 +1,9 @@
 import { Elysia } from "elysia";
-import Community from "../components/Community";
-import coms from "../communities.json";
 import { Sun, Moon, Github, ChevronDown } from "lucide-static";
-
-const communities = coms as Community[];
 
 export default new Elysia().get("/", () => {
   return (
-    <html lang="en" class={"hidden"} _={`on load remove .hidden from me`}>
+    <html lang="en" class={"hidden"} _="on load remove .hidden from me">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,8 +13,8 @@ export default new Elysia().get("/", () => {
         />
         <title>Discuit Search</title>
         <link rel="stylesheet" href="/public/style.css" />
-        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-        <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.11" />
+        <script src="https://unpkg.com/hyperscript.org@0.9.12" />
       </head>
       <body>
         <header>
@@ -86,7 +82,7 @@ export default new Elysia().get("/", () => {
               {ChevronDown}
             </label>
           </form>
-          <div id="results" hx-get="/search" hx-trigger="load"></div>
+          <div id="results" hx-get="/search" hx-trigger="load" />
         </main>
       </body>
     </html>

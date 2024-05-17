@@ -1,9 +1,5 @@
-import { Elysia } from "elysia";
-import coms from "../communities.json";
-import Community from "../components/Community";
-import { search } from "../controllers/search";
-
-const communities = coms as Community[];
+import Elysia from "elysia";
+import { search } from "../../controllers/search";
 
 function sort(communities: Community[], sort: string) {
   const nameSorted = communities.toSorted((a, b) => {
@@ -31,48 +27,21 @@ function sort(communities: Community[], sort: string) {
   return communities;
 }
 
-export default new Elysia().get("/search", async ({ query }) => {
-  if (!query.q) {
-    return (
-      <>
-        {sort(communities, query.sort || "relevance").map((c) => (
-          <Community
-            id={c.id}
-            name={c.name}
-            about={c.about}
-            noMembers={c.noMembers}
-          />
-        ))}
-      </>
-    );
-  }
+export default new Elysia().get("/api/search", async ({ query, error }) => {
+  if (!query.q) return error("Bad Request");
 
   const searchResults = await search(query.q);
-  if (!searchResults) {
-    return (
-      <>
-        {sort(communities, query.sort || "relevance").map((c) => (
-          <Community
-            id={c.id}
-            name={c.name}
-            about={c.about}
-            noMembers={c.noMembers}
-          />
-        ))}
-      </>
-    );
-  }
+  if (!searchResults) return error("Not Found");
 
-  return (
-    <>
-      {sort(searchResults, query.sort || "relevance").map((c) => (
-        <Community
-          id={c.id}
-          name={c.name}
-          about={c.about}
-          noMembers={c.noMembers}
-        />
-      ))}
-    </>
-  );
+  return {
+    results: sort(searchResults, query.sort || "relevance").map((c) => ({
+      id: c.id,
+      name: c.name,
+      about: c.about,
+      noMembers: c.noMembers,
+      lastActivityAt: c.lastActivityAt,
+      createdAt: c.createdAt,
+      proPic: c.proPic,
+    })),
+  };
 });
