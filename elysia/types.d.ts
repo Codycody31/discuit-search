@@ -8,6 +8,9 @@ type Community = {
   createdAt: string; // time
   proPic: {
     url: string;
+    copies: {
+      url: string;
+    }[];
   } | null;
 };
 
