@@ -7,7 +7,6 @@ type Community = {
   lastActivityAt: string; // time
   createdAt: string; // time
   proPic: {
-    url: string;
     copies: {
       url: string;
     }[];
