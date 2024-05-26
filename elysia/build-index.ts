@@ -1,4 +1,4 @@
-const t0 = performance.now();
+const t0 = Bun.nanoseconds();
 
 async function fetchBase64(url = "") {
   return await fetch(url)
@@ -7,12 +7,8 @@ async function fetchBase64(url = "") {
 }
 
 async function getImage(c: Community) {
-  const url = c.proPic?.url;
-
-  c.image = await fetchBase64(`https://discuit.net${url}`).catch(() => {
-    return favicon;
-  });
-
+  const url = c.proPic?.copies[c.proPic.copies.length - 1]?.url;
+  c.image = url ? await fetchBase64(`https://discuit.net${url}`) : favicon;
   return c;
 }
 
@@ -42,24 +38,21 @@ const communities = await fetch("https://discuit.net/api/communities")
     cArr.map(async (c) => {
       let community = await getImage(c);
       community = await getLastActivity(community);
-      return community;
+      return {
+        id: community.id,
+        name: community.name,
+        about: community.about,
+        noMembers: community.noMembers,
+        image: community.image,
+        createdAt: community.createdAt,
+        lastActivityAt: community.lastActivityAt,
+      };
     }),
   )
-  .then((cArr) => Promise.all(cArr))
-  .then((cArr) =>
-    cArr.map((c) => ({
-      id: c.id,
-      name: c.name,
-      about: c.about,
-      noMembers: c.noMembers,
-      image: c.image,
-      createdAt: c.createdAt,
-      lastActivityAt: c.lastActivityAt,
-    })),
-  );
+  .then((p) => Promise.all(p));
 
 Bun.write("communities.json", JSON.stringify(communities));
 
-const t1 = performance.now();
+const t1 = Bun.nanoseconds();
 
-console.log(`Built index in ${(t1 - t0) / 1000}s`);
+console.log(`Built index in ${(t1 - t0) / 1e9}s`);
