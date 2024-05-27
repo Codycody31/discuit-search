@@ -17,7 +17,7 @@ async function getLastActivity(c: Community) {
     posts: Post[];
   };
   const posts = (await fetch(
-    `https://discuit.net/api/posts?communityId=${c.id}&sort=activity`,
+    `https://discuit.net/api/posts?communityId=${c.id}&sort=activity&limit=1`,
   ).then((r) => r.json())) as Response;
 
   if (posts.posts) {
